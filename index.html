@@ -15,45 +15,44 @@
         <h1>Новая запись</h1>
 
         <form id="appointmentForm">
-
+            <!--КЛИЕНТ-->
             <div class="input-group">
                 <label for="client">Клиент</label>
                 <input type="text" id="client" placeholder="Введите имя клиента">
             </div>
 
+            <!--МАСТЕР-->
             <div class="input-group">
                 <label for="master">Мастер</label>
 
                 <select id="master">
                     <option value="">Выберите мастера</option>
-                    <option>Ольга</option>
-                    <option>Мария</option>
-                    <option>Екатерина</option>
+                    <option value = "1" >Толкын</option>
+                    <option value = "2" >Мастер</option>
                 </select>
             </div>
 
+            <!--УСЛУГА-->
             <div class="input-group">
                 <label for="service">Услуга</label>
 
                 <select id="service">
-                    <option value="">Выберите услугу</option>
-                    <option>Маникюр</option>
-                    <option>Педикюр</option>
-                    <option>Наращивание</option>
-                    <option>Коррекция</option>
                 </select>
             </div>
 
+            <!--ДАТА-->
             <div class="input-group">
                 <label for="date">Дата</label>
                 <input type="date" id="date">
             </div>
 
+            <!--ВРЕМЯ-->
             <div class="input-group">
                 <label for="time">Время</label>
                 <input type="time" id="time">
             </div>
 
+            <!--ЦЕНА--> 
             <div class="input-group">
                 <label for="price">Стоимость</label>
                 <input type="number" id="price" placeholder="Введите стоимость">

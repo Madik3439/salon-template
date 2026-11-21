@@ -1,4 +1,6 @@
 import { tableBody } from "./main.js";
+
+
 export function createTagText(tag, text) 
 { 
   const element = document.createElement(tag)
@@ -25,9 +27,12 @@ export function  createRow(appointment)
   {
    
   }); 
+
+
+
   row.appendChild(createTagText('td', appointment.client)); 
-  row.appendChild(createTagText('td', appointment.master));
   row.appendChild(createTagText('td', appointment.service));
+  row.appendChild(createTagText('td', appointment.master));
   row.appendChild(createTagText('td', appointment.date)); 
   row.appendChild(createTagText('td', appointment.time)); 
   row.appendChild(createTagText('td', appointment.price)); 
@@ -36,6 +41,22 @@ export function  createRow(appointment)
 
   return row; 
 }
+
+export function renderService(srArr, listBar) 
+{
+  listBar.replaceChildren(); 
+  srArr.forEach(item => 
+  {  
+    
+    const option = createTagText('option',`${item.name} --- ${item.price}KZT`)
+    option.value = item.id; 
+    listBar.appendChild(option); 
+  });
+} 
+
+
+
+
 export function renderAppoinment()
 { 
   const JSONrowRander  = JSON.parse(localStorage.getItem('appointments')) || [];
