@@ -7,7 +7,6 @@ export function createTagText(tag, text)
   element.textContent = text; 
   return element; 
 }
-
 export function createTag(tag) 
 { 
   return document.createElement(tag)
@@ -24,8 +23,8 @@ export function  createRow(appointment)
   delBtn.type = 'button'; 
 
   delBtn.addEventListener('click',function dlt()
-  {
-   
+  { 
+    localStorage.clear();
   }); 
 
 
@@ -41,18 +40,78 @@ export function  createRow(appointment)
 
   return row; 
 }
+export function createCard(appointment) 
+{  
 
+  let orderCard = createTag('div'); 
+  let orderInfo = createTag('div');
+  // let priceSpan = createTag('span'); 
+  // let orderName = createTag('h3')
+  const delBtn = createTag('button'); 
+  delBtn.type = 'button'; 
+  delBtn.addEventListener('click',function dlt()
+  {
+
+  }); 
+  orderInfo.appendChild(createTagText('h3', appointment.client))
+  orderCard.appendChild(orderInfo);
+  orderCard.appendChild(delBtn); 
+
+
+
+
+  cellAction.appendChild(delBtn);
+}
 export function renderService(srArr, listBar) 
 {
   listBar.replaceChildren(); 
+    const takelessOption = createTagText('option', "Выберите услугу");
+    takelessOption.disabled = true; 
+    takelessOption.selected = true;
+    listBar.appendChild(takelessOption);  
   srArr.forEach(item => 
   {  
     
-    const option = createTagText('option',`${item.name} --- ${item.price}KZT`)
+    const option = createTagText('option',`${item.name} --- ${item.price}KZT`);
+
     option.value = item.id; 
+
+   
     listBar.appendChild(option); 
   });
-} 
+}
+
+
+export function renderSelectedServices(srArr, listBar)  
+{ 
+  listBar.replaceChildren(); 
+  srArr.forEach( item => 
+  { 
+    const renderedService = createTagText('div',`${item.name} --- ${item.price}KZT`);
+    const delBtn = createTag('button');
+    delBtn.textContent = "Delete"; 
+    delBtn.classList.add('delete-btn'); 
+    delBtn.type = 'button'; 
+    delBtn.value = item.id; 
+
+
+    delBtn.addEventListener('click',function dlt()
+    { 
+      const selectedID = Number(delBtn.value)
+       srArr =  srArr.filter((item) => 
+      { 
+        return item.id !== selectedID; 
+
+
+      });  
+    }); 
+    listBar.appendChild(renderedService);
+    listBar.appendChild(delBtn)
+
+  });
+
+
+}
 
 
 

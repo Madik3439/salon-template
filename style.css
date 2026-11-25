@@ -215,3 +215,114 @@ button:disabled {
     cursor: not-allowed;
     transform: none;
 }
+.order-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.order-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 16px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background: #fff;
+}
+
+.order-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.order-info h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.order-info span {
+    font-size: 14px;
+    color: #666;
+}
+
+.remove-service {
+    width: 30px;
+    height: 30px;
+    border: none;
+    border-radius: 6px;
+    background: #f5e5e5;
+    color: #c0392b;
+    font-size: 22px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.remove-service:hover {
+    background: #f0cccc;
+}
+#selected-services {
+    width: 100%;
+    max-width: 450px;
+    padding: 20px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    box-sizing: border-box;
+}
+
+#selected-services h3 {
+    margin: 0 0 18px;
+    padding-bottom: 12px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #252525;
+    border-bottom: 1px solid #eeeeee;
+}
+
+#selected-services-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-height: 20px;
+}
+
+/* Строка отдельной услуги */
+#selected-services-list > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    background: #f8f9fb;
+    border-radius: 8px;
+    color: #333333;
+    font-size: 14px;
+}
+
+.total-price {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-top: 18px;
+    padding-top: 15px;
+    border-top: 1px solid #e5e7eb;
+    font-weight: 600;
+}
+
+#total-price {
+    width: 110px;
+    padding: 8px;
+    border: none;
+    background: transparent;
+    color: #222222;
+    font-size: 20px;
+    font-weight: 700;
+    text-align: right;
+    outline: none;
+}

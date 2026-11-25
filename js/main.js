@@ -5,6 +5,9 @@ import { renderAppoinment } from "./dom.js";
 export let tableBody = document.querySelector('tbody');
 import { getMasterServices } from "./appointments.js";
 import { renderService } from "./dom.js";
+import {getPriceFromInput} from './appointments.js'
+import {renderSelectedServices} from './dom.js'
+import {throwServiceName} from './appointments.js'
 document.addEventListener('DOMContentLoaded', function main() 
 { 
     let client = document.getElementById('client'); 
@@ -17,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function main()
     let masterSelect = document.getElementById('master'); 
     let serviceList = document.getElementById('service'); //!!!
     const appointments = JSON.parse(localStorage.getItem(('appointments')))|| []; ; 
-
+    let selectedServicesList = document.getElementById('selected-services-list');
    const masterServices = [
     { id: 1, master_id: 1, name: "Маникюр", price: 5000 },
     { id: 2, master_id: 1, name: "Дизайн", price: 1500 },
@@ -25,20 +28,21 @@ document.addEventListener('DOMContentLoaded', function main()
     { id: 4, master_id: 2, name: "Наращивание", price: 8000 },
     { id: 5, master_id: 3, name: "Маникюр", price: 4500 }
     ];
-
-
+    let selectedServices = []; 
+    let resultedServices = []
 
 
   function createAppointment() 
   {   
    
     let parsedPrice = parseInt(price.value); 
+    let collectedService = throwServiceName(selectedServices)
 
     if(Number.isNaN(parsedPrice) || parsedPrice <= 0 
     || client.value.trim() === "" 
     || master.value.trim() === "" 
-    ||  service.value.trim() === "" 
-    ||  date.value.trim() ==="" 
+    || selectedServices.length === 0
+    || date.value.trim() ==="" 
     || time.value.trim() === "") 
     {   
     
@@ -52,8 +56,8 @@ document.addEventListener('DOMContentLoaded', function main()
       const appointment = new Appointment(
 
       client.value.trim(), 
-      master.value.trim(),
-      service.value.trim(),
+      master.options[master.selectedIndex].textContent.trim(),
+      collectedService,
       date.value.trim(),
       time.value.trim(),
       parsedPrice
@@ -66,14 +70,55 @@ document.addEventListener('DOMContentLoaded', function main()
    
   
   masterSelect.addEventListener('change', () => 
-  {   
+  {  
+    selectedServices = []; 
+    selectedServicesList.replaceChildren();
     const selectedID = Number(masterSelect.value); 
-    let resultedService = getMasterServices(selectedID, masterServices)
+    resultedServices = getMasterServices(selectedID, masterServices)
 
-    console.log(resultedService); 
+    console.log(resultedServices); 
 
-    renderService(resultedService, serviceList)
+    renderService(resultedServices, serviceList)
+    price.value = 0
   });
+
+
+  serviceList.addEventListener('change',() => 
+  { 
+    const selectedServiceId = Number(serviceList.value); 
+    const selectedService = resultedServices.find((item) => 
+    { 
+      return item.id === selectedServiceId; 
+    }); 
+    if(!selectedService)
+    { 
+      return; 
+    }
+    else
+    { 
+      const allReadyAdded = selectedServices.some((item) => 
+      { 
+        return item.id ===  selectedServiceId; 
+      }); 
+
+      if(allReadyAdded === true) 
+      { 
+        alert("Данный заказ уже выбран !"); 
+      }
+      else 
+      { 
+        selectedServices.push(selectedService)  
+        console.log(selectedServices); 
+      }
+    }
+    price.value = getPriceFromInput(selectedServices);
+    
+    renderSelectedServices(selectedServices,selectedServicesList);
+
+  }); 
+
+
+
 
 
   formEvent.addEventListener('submit', function(event) 

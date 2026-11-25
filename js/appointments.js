@@ -25,3 +25,20 @@ export function Appointment(client, master, service, date, time, price)
     });   
     return resultedService; 
 }
+
+export function getPriceFromInput(tooPrice) 
+{   
+    let getResult = tooPrice.reduce((result,item) => 
+    { 
+        return result += item.price; 
+    },0 ); 
+    return getResult
+} 
+export function throwServiceName(tooName)
+{ 
+    let getResult = tooName.map(( item) => 
+    { 
+        return item.name; 
+    })
+    return getResult; 
+}
