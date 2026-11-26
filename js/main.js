@@ -1,5 +1,6 @@
 import { Appointment } from "./appointments.js";
-import { createRow } from "./dom.js";
+import {createRow } from "./dom.js";
+import { createCard  } from "./dom.js";
 import { JSONformater } from "./storge.js";
 import { renderAppoinment } from "./dom.js";
 export let tableBody = document.querySelector('tbody');
@@ -8,6 +9,7 @@ import { renderService } from "./dom.js";
 import {getPriceFromInput} from './appointments.js'
 import {renderSelectedServices} from './dom.js'
 import {throwServiceName} from './appointments.js'
+
 document.addEventListener('DOMContentLoaded', function main() 
 { 
     let client = document.getElementById('client'); 
@@ -21,6 +23,7 @@ document.addEventListener('DOMContentLoaded', function main()
     let serviceList = document.getElementById('service'); //!!!
     const appointments = JSON.parse(localStorage.getItem(('appointments')))|| []; ; 
     let selectedServicesList = document.getElementById('selected-services-list');
+    let cardContainer = document.getElementById('card-container'); 
    const masterServices = [
     { id: 1, master_id: 1, name: "Маникюр", price: 5000 },
     { id: 2, master_id: 1, name: "Дизайн", price: 1500 },
@@ -66,9 +69,7 @@ document.addEventListener('DOMContentLoaded', function main()
       return appointment; 
     }
   
-  }
-   
-  
+  } 
   masterSelect.addEventListener('change', () => 
   {  
     selectedServices = []; 
@@ -81,8 +82,15 @@ document.addEventListener('DOMContentLoaded', function main()
     renderService(resultedServices, serviceList)
     price.value = 0
   });
-
-
+  function deleteService(serviceId) 
+  {   
+      selectedServices = selectedServices.filter(item => 
+      {
+        return item.id !== serviceId; 
+      }); 
+      price.value = getPriceFromInput(selectedServices);
+      renderSelectedServices(selectedServices, selectedServicesList, deleteService ); 
+  }
   serviceList.addEventListener('change',() => 
   { 
     const selectedServiceId = Number(serviceList.value); 
@@ -113,14 +121,9 @@ document.addEventListener('DOMContentLoaded', function main()
     }
     price.value = getPriceFromInput(selectedServices);
     
-    renderSelectedServices(selectedServices,selectedServicesList);
+    renderSelectedServices(selectedServices,selectedServicesList,deleteService);
 
   }); 
-
-
-
-
-
   formEvent.addEventListener('submit', function(event) 
   { 
     event.preventDefault(); 
@@ -129,11 +132,11 @@ document.addEventListener('DOMContentLoaded', function main()
     if (typeof createdResult === "object" && createdResult !== null )
     {  
       const createdRow = createRow(createdResult);
+      tableBody.appendChild(createdRow); 
+      const createdCard = createCard(createdResult); 
+      cardContainer.appendChild(createdCard); 
+      
       appointments.push(createdResult); 
-      tableBody.appendChild(createdRow);
-
-
-
       JSONformater('appointments', appointments);
       console.log(localStorage);
       formEvent.reset(); 
@@ -144,7 +147,3 @@ document.addEventListener('DOMContentLoaded', function main()
 renderAppoinment(); 
 }
 );
-
-
-
-

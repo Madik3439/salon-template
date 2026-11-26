@@ -10,101 +10,122 @@
 
 <body>
 
-    <div class="container">
 
-        <h1>Новая запись</h1>
 
-        <form id="appointmentForm">
-            <!--КЛИЕНТ-->
-            <div class="input-group">
-                <label for="client">Клиент</label>
-                <input type="text" id="client" placeholder="Введите имя клиента">
-            </div>
+    <div class="wrapper">
+        <div class="container">
 
-            <!--МАСТЕР-->
-            <div class="input-group">
-                <label for="master">Мастер</label>
+            <h1>Новая запись</h1>
 
-                <select id="master">
-                    <option value="">Выберите мастера</option>
-                    <option value="1">Толкын</option>
-                    <option value="2">Мастер</option>
-                </select>
-            </div>
-
-            <!--УСЛУГА-->
-            <div class="input-group">
-                <label for="service">Услуга</label>
-
-                <select id="service">
-                </select>
-            </div>
-
-            <div id="selected-services">
-                <h3>Выбранные услуги</h3>
-
-                <div id="selected-services-list">
-                    <!-- Здесь будут отображаться выбранные услуги -->
+            <form id="appointmentForm">
+                <!--КЛИЕНТ-->
+                <div class="input-group">
+                    <label for="client">Клиент</label>
+                    <input type="text" id="client" placeholder="Введите имя клиента">
                 </div>
-            </div>
+
+                <!--МАСТЕР-->
+                <div class="input-group">
+                    <label for="master">Мастер</label>
+
+                    <select id="master">
+                        <option value="">Выберите мастера</option>
+                        <option value="1">Толкын</option>
+                        <option value="2">Мастер</option>
+                    </select>
+                </div>
+
+                <!--УСЛУГА-->
+                <div class="input-group">
+                    <label for="service">Услуга</label>
+
+                    <select id="service">
+                    </select>
+                </div>
+
+                <div id="selected-services">
+                    <h3>Выбранные услуги</h3>
+
+                    <div id="selected-services-list">
+                        <!-- Здесь будут отображаться выбранные услуги -->
+                    </div>
+                </div>
 
 
-            <!--ДАТА-->
-            <div class="input-group">
-                <label for="date">Дата</label>
-                <input type="date" id="date">
-            </div>
+                <!--ДАТА-->
+                <div class="input-group">
+                    <label for="date">Дата</label>
+                    <input type="date" id="date">
+                </div>
 
-            <!--ВРЕМЯ-->
-            <div class="input-group">
-                <label for="time">Время</label>
-                <input type="time" id="time">
-            </div>
+                <!--ВРЕМЯ-->
+                <div class="input-group">
+                    <label for="time">Время</label>
+                    <input type="time" id="time">
+                </div>
 
-            <!--ЦЕНА-->
-            <div class="input-group">
-                <label for="price">Общая стоимость</label>
-                <input type="number" id="price" placeholder="0" readonly>
-            </div>
+                <!--ЦЕНА-->
+                <div class="input-group">
+                    <label for="price">Общая стоимость</label>
+                    <input type="number" id="price" placeholder="0" readonly>
+                </div>
 
-            <button type="submit">
-                Создать запись
-            </button>
+                <button type="submit">
+                    Создать запись
+                </button>
 
-        </form>
-    </div>
-
-    <div class="appointments">
-
-        <h2>Записи клиентов</h2>
-
-        <div id="appointmentsList">
-
-            <!-- Здесь JavaScript будет создавать карточки -->
-            <table>
-                <thead>
-                    <tr>
-                        <th>Клиент</th>
-                        <th>Услуга</th>
-                        <th>Мастер</th>
-                        <th>Дата</th>
-                        <th>Время</th>
-                        <th>Цена</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-
-                </tbody>
-            </table>
+            </form>
         </div>
 
+        <div class="appointments">
+
+            <h2>Записи клиентов</h2>
+
+            <div id="appointmentsList">
+
+                <!-- Здесь JavaScript будет создавать карточки -->
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Клиент</th>
+                            <th>Услуга</th>
+                            <th>Мастер</th>
+                            <th>Дата</th>
+                            <th>Время</th>
+                            <th>Цена</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+        <div id="card-container">
+            <!-- <div class="appointment-card">
+                <h3>Информация о записи</h3>
+
+                <div class="appointment-card-body">
+                    <p class="client-name">Александр Иванов</p>
+                    <p class="master-name">Мастер: Толкын</p>
+                    <p class="service-list">Услуги: Маникюр, Дизайн ногтей</p>
+                    <p class="appointment-date">Дата: 28.11.2026</p>
+                    <p class="appointment-time">Время: 14:30</p>
+                    <p class="appointment-price">Стоимость: 6500 ₸</p>
+                </div>
+
+                <div class="appointment-card-actions">
+                    <button type="button" class="delete-appointment">
+                        Удалить запись
+                    </button>
+                </div>
+            </div> -->
+        </div>
     </div>
 
-
-    <div class="order-list" id="orderList">
-        <!-- Карточки будут добавляться через JS -->
-    </div>
     <script type="module" src="./js/main.js"></script>
 
 </body>

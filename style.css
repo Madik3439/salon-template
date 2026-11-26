@@ -12,7 +12,13 @@ body{
     align-items:center;
     min-height:100vh;
 }
-
+.wrapper 
+{ 
+    width: 80vw ;
+    display:  flex; 
+    flex-direction: column ;
+    align-items: center ;
+}
 .container{
     width:500px;
     background:#fff;
@@ -222,32 +228,7 @@ button:disabled {
     margin-top: 15px;
 }
 
-.order-card {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 14px 16px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    background: #fff;
-}
 
-.order-info {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-}
-
-.order-info h3 {
-    margin: 0;
-    font-size: 16px;
-    font-weight: 600;
-}
-
-.order-info span {
-    font-size: 14px;
-    color: #666;
-}
 
 .remove-service {
     width: 30px;
@@ -325,4 +306,88 @@ button:disabled {
     font-weight: 700;
     text-align: right;
     outline: none;
+}
+.appointment-card {
+    width: 100%;
+    max-width: 450px;
+    padding: 20px;
+    margin-bottom: 16px;
+
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    box-sizing: border-box;
+
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.appointment-card:hover {
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+}
+
+.appointment-card h3 {
+    margin: 0 0 16px;
+    padding-bottom: 12px;
+
+    font-size: 18px;
+    font-weight: 600;
+    color: #252525;
+
+    border-bottom: 1px solid #eeeeee;
+}
+
+.appointment-card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.appointment-card-body p {
+    margin: 0;
+    color: #444444;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.appointment-card-body p:first-child {
+    font-size: 16px;
+    font-weight: 600;
+    color: #222222;
+}
+
+.appointment-card-body .appointment-price {
+    margin-top: 8px;
+    padding-top: 12px;
+
+    border-top: 1px solid #eeeeee;
+
+    color: #4f46e5;
+    font-size: 19px;
+    font-weight: 700;
+}
+.appointment-card-actions {
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid #eeeeee;
+}
+
+.delete-appointment {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid #ef4444;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #dc2626;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.delete-appointment:hover {
+    background: #ef4444;
+    color: #ffffff;
 }
